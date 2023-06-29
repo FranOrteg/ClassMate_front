@@ -5,7 +5,7 @@
                 <div class="botonSelect">
                     <select class="btn btn-info" name="alumnoId" ngModel>
                         <option value="">Selecciona un alumno</option>
-                        <option *ngFor="let alumno of arrAlumnos" [value]="alumno.id">{{alumno.nombre}}</option>
+                        <option *ngFor="let alumno of AllAlumnos" [value]="alumno.id">{{alumno.nombre}}</option>
                     </select>
                     <div class="boton">
                         <input type="submit" value="Select" class="btn btn-info">
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="listaAlumnos">
             <ul class="lista">
-                <li *ngFor="let alumno of alumnos">
+                <li *ngFor="let alumno of arrAlumnos">
                     <!-- <div>
                         {{alumno.clase}}
                     </div> -->
@@ -30,7 +30,7 @@
                         <i class="fa-solid fa-pen-to-square"
                             [routerLink]="['/profesor/observacion/new/alumno', alumno.id, alumno.clases_id]"
                             id="newAlumno"></i>
-                        <i class="fa-solid fa-circle-minus" (click)="deleteAlumno(alumno.hasClase_id)"></i>
+                        <i class="fa-solid fa-circle-minus" (click)="deleteAlumno(alumno.id)"></i>
                     </div>
                 </li>
             </ul>

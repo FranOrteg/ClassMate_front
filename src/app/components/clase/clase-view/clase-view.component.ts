@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/interfaces/user.interface';
 import { AlumnoService } from 'src/app/services/alumno.service';
+import { ClaseService } from 'src/app/services/clase.service';
 import { TutorService } from 'src/app/services/tutor.service';
 import { UtilsService } from 'src/app/services/utils.service';
 
@@ -16,11 +17,14 @@ export class ClaseViewComponent {
   token: any;
   alumnos: any[];
   classId: any;
+  AllAlumnos: any[] = [];
+
   constructor(
     private tutorService: TutorService,
     private activatedRoute: ActivatedRoute,
     private utilSV: UtilsService,
-    private alumnoSV: AlumnoService
+    private alumnoSV: AlumnoService,
+    private claseSV: ClaseService
   ) {
     this.arrAlumnos = [],
       this.token = this.utilSV.getToken(),
@@ -33,14 +37,17 @@ export class ClaseViewComponent {
       this.classId = params.id
       console.log('PARAMETROSSSS', params);
       //Recoge datos de todos los alumnos
-      const res = await this.alumnoSV.getAlumnosWithClassID();
+      const res = await this.claseSV.getClaseByClaseId(this.classId);
       console.log('ALUMNOS CON CLASE IDDDDDD', res);
       this.alumnos = res
       console.log('Alumno', this.alumnos)
 
-      const resAll = await this.alumnoSV.getAllAlumnosFromUsuarios();
+      const resAll = await this.alumnoSV.getAlumnosByClaseId(this.classId);
       this.arrAlumnos = resAll;
       console.log('ALL ALUMNOS', resAll);
+
+      const all = await this.alumnoSV.getAllAlumnosFromUsuarios();
+      this.AllAlumnos = all;
 
       localStorage.setItem('claseId', this.classId);
 
@@ -60,7 +67,7 @@ export class ClaseViewComponent {
 
   //Borrar alumno
   async deleteAlumno(idAlumno: any) {
-    //console.log(idAlumno)
+    console.log(idAlumno)
     await this.alumnoSV.deleteAlumnoByID(idAlumno)
   }
 

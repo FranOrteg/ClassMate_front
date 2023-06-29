@@ -1,15 +1,16 @@
 <div class="perfil">
     <div class="container">
         <div class="row p-3" *ngFor="let perfil of arrPerfil">
-            <div class="col-4 col-sm-4 ">
-                <p><i class="fa-solid fa-user"></i> {{perfil.nombre}} {{perfil.apellidos}}</p>
+            <div class="col-2 col-sm-12 iconos">
+                <p><i class="fa-solid fa-user"></i> <span>{{perfil.nombre}} {{perfil.apellidos}}</span></p>
+                <hr>
             </div>
-            <div class="col-4 col-sm-4 ">
+            <div class="col-5 col-sm-6 iconos">
                 <p><i class="fa-solid fa-id-card"></i> {{perfil.dni}}</p>
                 <p><i class="fa-solid fa-location-dot"></i> {{perfil.direccion}}</p>
                 <p><i class="fa-solid fa-envelope"></i> {{perfil.email}}</p>
             </div>
-            <div class="col-4 col-sm-4">
+            <div class="col-5 col-sm-6 iconos">
                 <p *ngIf="perfil.genero==='f'"><i class="fa-solid fa-venus-mars"></i> Mujer</p>
                 <p *ngIf="perfil.genero==='m'"><i class="fa-solid fa-venus-mars"></i> Hombre </p>
                 <p class="fecha"><i class="fa-solid fa-cake-candles"></i> {{ perfil.nacimiento | date:'medium' }}

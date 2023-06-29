@@ -13,7 +13,7 @@ export class ListarClasesComponent {
   }
 
   async ngOnInit() {
-    this.arrClases = await this.claseSV.getAllClases();
+    this.arrClases = (await this.claseSV.getAllClases()).map(clase => { clase.nombre = clase.nombre.split('_').join(' '); return clase });
     console.log(this.arrClases);
   }
 }

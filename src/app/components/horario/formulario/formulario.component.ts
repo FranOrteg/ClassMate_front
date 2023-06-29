@@ -36,11 +36,30 @@ export class FormularioComponent {
   }
 
   async ngOnInit() {
+    console.log('asignaturas', this.asignaturas);
+
     this.asignaturas = await this.asigSV.getAllAsignaturas();
+    this.asignaturas = this.removeDuplicateAsignaturas(this.asignaturas);
+
     this.clases = await this.classSV.getAllClases();
     console.log('asignaturas', this.asignaturas);
     console.log('clases', this.clases);
   }
+
+  removeDuplicateAsignaturas(asignaturas: any[]): any[] {
+    const uniqueAsignaturas = [];
+    const asignaturaMap = new Map();
+
+    for (const asignatura of asignaturas) {
+      if (!asignaturaMap.has(asignatura.asignatura)) {
+        asignaturaMap.set(asignatura.asignatura, true);
+        uniqueAsignaturas.push(asignatura);
+      }
+    }
+
+    return uniqueAsignaturas;
+  }
+
 
   //getClase {clase_nombre:'1A',clase_id:2}
   //getAsignatura {asignatura:'Mates',asignatura_id:2}

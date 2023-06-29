@@ -9,7 +9,31 @@
     overflow: hidden;
 }
 
+i.fa-solid.fa-location-dot {
+    padding-right: 20px;
+}
+
+i.fa-solid.fa-cake-candles {
+    padding-right: 20px;
+}
+
 i {
-    color: #c1d23e;
-    padding-right: 10px;
+    color: #919f27;
+    padding-right: 15px;
+    font-size: 1.2rem;
+    width: auto;
+    height: auto;
+}
+
+span {
+    color: #3e64c4;
+    font-size: 1.3rem;
+}
+
+span:hover {
+    color: #0249fb;
+}
+
+hr {
+    border: 1.5px solid #c1d23e;
 }
